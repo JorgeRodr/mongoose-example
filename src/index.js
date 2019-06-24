@@ -20,9 +20,23 @@ const onDBReady = err => {
 
   app.use(router.routes());
 
+  app.use(async (ctx, next) => {
+    try {
+      await next();
+    } catch (err) {
+      ctx.status = err.status || 500;
+      ctx.body = err.message;
+      ctx.app.emit("error", err, ctx);
+    }
+  });
+
+  app.on("error", (err, ctx) => {
+    console.log(err);
+  });
+
   app.listen(3000, () => {
     console.log("Koa example on port 3000!");
   });
 };
-mongoose.set('useFindAndModify', false);
+mongoose.set("useFindAndModify", false);
 mongoose.connect(mongoUri, onDBReady);
