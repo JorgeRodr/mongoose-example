@@ -18,10 +18,10 @@
   },
   "homepage": "https://github.com/JorgeRodr/mongoose-example#readme",
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "dotenv": "^8.0.0",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
-    "koa-cors": "0.0.16",
     "koa-router": "^7.4.0",
     "mongoose": "^5.6.0"
   },

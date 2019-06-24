@@ -3,7 +3,7 @@ const Koa = require("koa");
 const app = new Koa();
 const mongoose = require("mongoose");
 const body = require("koa-body");
-const cors = require("koa-cors");
+const cors = require("@koa/cors");
 const router = require("./routes");
 
 const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${
@@ -39,4 +39,5 @@ const onDBReady = err => {
   });
 };
 mongoose.set("useFindAndModify", false);
+mongoose.set("useNewUrlParser", true);
 mongoose.connect(mongoUri, onDBReady);
